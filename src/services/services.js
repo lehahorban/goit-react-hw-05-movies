@@ -19,23 +19,23 @@ function getMovieDetails(id) {
     `https://api.themoviedb.org/3/movie/${id}?api_key=${Key}&language=en-US`
   )
     .then(response => response.json())
-    .then(response => response);
+    .then(data => data);
 }
 
-function getMovieCredits() {
+function getMovieCredits(id) {
   return fetch(
-    `https://api.themoviedb.org/3/movie/626735/credits?api_key=${Key}&language=en-US`
+    `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${Key}&language=en-US`
   )
     .then(response => response.json())
-    .then(response => console.log(response));
+    .then(data => data.cast);
 }
 
-function getMovieReviews() {
+function getMovieReviews(id) {
   return fetch(
-    `https://api.themoviedb.org/3/movie/626735/reviews?api_key=${Key}&language=en-US&page=1`
+    `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${Key}&language=en-US&page=1`
   )
     .then(response => response.json())
-    .then(response => console.log(response));
+    .then(data => data.results);
 }
 
 const Api = {

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Api from 'services/services';
 
@@ -31,13 +31,28 @@ function Movies() {
   return (
     <div>
       <form onSubmit={onSubmit} className={style.form}>
-        <input type="text" value={inputValue} onChange={onChange} />
-        <button type="submit">Search</button>
+        <input
+          className={style.input}
+          type="text"
+          value={inputValue}
+          onChange={onChange}
+        />
+        <button className={style.btn} type="submit">
+          Search
+        </button>
       </form>
-      <ul>
+      <ul className={style.movieList}>
         {moviesArray.map(item => (
-          <li key={item.id}>
-            <Link to={`/movies/${item.id}`}>{item.title}</Link>
+          <li className={style.movieItem} key={item.id}>
+            <NavLink className={style.movieLink} to={`/movies/${item.id}`}>
+              {' '}
+              <img
+                className={style.movieImage}
+                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                alt={item.title}
+              />
+              {item.name || item.title}
+            </NavLink>
           </li>
         ))}
       </ul>

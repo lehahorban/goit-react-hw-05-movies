@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Api from 'services/services';
+import style from '../../style.module.css';
 
 function MovieDetails() {
   const [moviesDetails, setMoviesDetails] = useState([]);
@@ -16,15 +17,34 @@ function MovieDetails() {
     <div>
       <ul>
         {moviesDetails.map(item => (
-          <li key={item.id}>
+          <li className={style.moviesDetailsItem} key={item.id}>
             <img
-              src={`https://image.tmdb.org/t/p/w342${item.poster_path}`}
+              className={style.movieDetailsImage}
+              src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
               alt={item.title}
             />
-            <p>{item.title}</p>
-            <p>User Score: {item.vote_average}</p>
-            <p>Overview: {item.overview}</p>
-            <p>Genres: {item.genres.map(item => item.name)}</p>
+            <p className={style.movieDetailsTextTitle}>{item.title}</p>
+            <p className={style.movieDetailsText}>
+              <span>User Score:</span> {item.vote_average}
+            </p>
+            <p className={style.movieDetailsText}>
+              <span>Overview:</span> {item.overview}
+            </p>
+            <p className={style.movieDetailsText}>
+              <span>Genres:</span> {item.genres.map(item => item.name)}
+            </p>
+            <Link
+              className={style.movieDetailsText}
+              to={`/movies/${item.id}/cast`}
+            >
+              <span>Cast</span>
+            </Link>
+            <Link
+              className={style.movieDetailsText}
+              to={`/movies/${item.id}/reviews`}
+            >
+              <span>Reviews</span>
+            </Link>
           </li>
         ))}
       </ul>

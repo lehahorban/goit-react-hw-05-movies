@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import style from '../../style.module.css';
 function Navigate() {
   return (
-    <nav>
+    <nav className={style.navigate}>
       <NavLink className={style.navLink} to="/">
         Home
       </NavLink>
