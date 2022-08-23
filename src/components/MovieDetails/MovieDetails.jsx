@@ -31,7 +31,8 @@ function MovieDetails() {
               <span>Overview:</span> {item.overview}
             </p>
             <p className={style.movieDetailsText}>
-              <span>Genres:</span> {item.genres.map(item => item.name)}
+              <span>Genres:</span>{' '}
+              {item.genres.map(item => item.name).join(', ')}
             </p>
             <Link
               className={style.movieDetailsText}
