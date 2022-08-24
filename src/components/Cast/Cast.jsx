@@ -23,7 +23,7 @@ function Cast() {
             />
             <p className={style.movieDetailsText}>{item.name}</p>
             <p className={style.movieDetailsText}>
-              <span>Character:</span> {item.character}
+              <span></span> {item.character}
             </p>
           </li>
         ))}
