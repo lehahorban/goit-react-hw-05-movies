@@ -119,20 +119,37 @@ body {
   width: 200px;
 }
 
-.movieImage {
-  padding-bottom: 10px;
+.movieCastImage {
+  width: 100%;
 }
 
+.movieImage {
+  width: 500px;
+  padding-bottom: 10px;
+}
+.moviesDetails {
+  display: flex;
+  background-color: #e2e3ee;
+}
+.moviesDetailList {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
 .moviesDetailsItem {
   display: flex;
-  width: 400px;
   flex-direction: column;
-  margin-left: 15px;
-  margin-top: 15px;
+  align-items: center;
+  flex-basis: calc(100% / 6 - 20px);
+  margin: 10px;
+  background-color: blanchedalmond;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .movieDetailsTextTitle {
   margin-top: 5px;
+  margin-left: 15px;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 700;
@@ -141,6 +158,7 @@ body {
 }
 .movieDetailsText {
   margin-top: 5px;
+  margin-left: 15px;
   font-family: 'Oswald';
   font-style: normal;
   font-weight: 400;
@@ -161,4 +179,25 @@ span {
   flex-direction: column;
   margin-left: 15px;
   margin-top: 15px;
+}
+
+.movieDetailsWrapper {
+  display: flex;
+}
+
+.movieDetailsImage {
+  width: 300px;
+}
+
+.detailsItem {
+  display: flex;
+  padding-left: 15px;
+  padding-top: 15px;
+}
+
+.itemWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 500px;
 }

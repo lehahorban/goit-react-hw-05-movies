@@ -13,11 +13,11 @@ function Cast() {
   console.log(moviesCredits);
   return (
     <div>
-      <ul>
+      <ul className={style.moviesDetailList}>
         {moviesCredits.map(item => (
           <li className={style.moviesDetailsItem} key={item.id}>
             <img
-              className={style.movieDetailsImage}
+              className={style.movieCastImage}
               src={`https://image.tmdb.org/t/p/w500${item.profile_path}`}
               alt={item.name}
             />

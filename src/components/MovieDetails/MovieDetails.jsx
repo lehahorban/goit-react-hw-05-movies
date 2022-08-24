@@ -15,41 +15,45 @@ function MovieDetails() {
 
   return (
     <div>
-      <ul>
+      <ul className={style.moviesDetails}>
         {moviesDetails.map(item => (
-          <li className={style.moviesDetailsItem} key={item.id}>
+          <li className={style.detailsItem} key={item.id}>
             <img
               className={style.movieDetailsImage}
-              src={`https://image.tmdb.org/t/p/w300${item.poster_path}`}
+              src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
               alt={item.title}
             />
-            <p className={style.movieDetailsTextTitle}>{item.title}</p>
-            <p className={style.movieDetailsText}>
-              <span>User Score:</span> {item.vote_average}
-            </p>
-            <p className={style.movieDetailsText}>
-              <span>Overview:</span> {item.overview}
-            </p>
-            <p className={style.movieDetailsText}>
-              <span>Genres:</span>{' '}
-              {item.genres.map(item => item.name).join(', ')}
-            </p>
-            <Link
-              className={style.movieDetailsText}
-              to={`/movies/${item.id}/cast`}
-            >
-              <span>Cast</span>
-            </Link>
-            <Link
-              className={style.movieDetailsText}
-              to={`/movies/${item.id}/reviews`}
-            >
-              <span>Reviews</span>
-            </Link>
-            <Outlet />
+            <div className={style.itemWrapper}>
+              <p className={style.movieDetailsTextTitle}>{item.title}</p>
+              <p className={style.movieDetailsText}>
+                <span>User Score:</span> {item.vote_average}
+              </p>
+              <p className={style.movieDetailsText}>
+                <span>Overview:</span> {item.overview}
+              </p>
+              <p className={style.movieDetailsText}>
+                <span>Genres:</span>{' '}
+                {item.genres.map(item => item.name).join(', ')}
+              </p>
+              <div className={style.movieDetailsWrapper}>
+                <Link
+                  className={style.movieDetailsText}
+                  to={`/movies/${item.id}/cast`}
+                >
+                  <span>Cast</span>
+                </Link>
+                <Link
+                  className={style.movieDetailsText}
+                  to={`/movies/${item.id}/reviews`}
+                >
+                  <span>Reviews</span>
+                </Link>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
+      <Outlet />
     </div>
   );
 }
