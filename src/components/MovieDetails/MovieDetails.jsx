@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import Api from 'services/services';
 import style from '../../style.module.css';
 
@@ -46,6 +46,7 @@ function MovieDetails() {
             >
               <span>Reviews</span>
             </Link>
+            <Outlet />
           </li>
         ))}
       </ul>

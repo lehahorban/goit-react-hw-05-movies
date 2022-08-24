@@ -1,5 +1,5 @@
 import style from '../../style.module.css';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import Api from 'services/services';
 import MovieDetails from 'components/MovieDetails/MovieDetails';
