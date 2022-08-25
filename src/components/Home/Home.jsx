@@ -1,12 +1,16 @@
 import style from '../../style.module.css';
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Api from 'services/services';
 import MovieDetails from 'components/MovieDetails/MovieDetails';
 function Home() {
   const [movies, setMovies] = useState([]);
 
-  Api.getTrending().then(results => setMovies(results));
+  useEffect(() => {
+    try {
+      Api.getTrending().then(results => setMovies(results));
+    } catch (error) {}
+  }, []);
 
   const hendleMovie = () => {
     return <MovieDetails />;

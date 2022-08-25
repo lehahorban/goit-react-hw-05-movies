@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, Outlet } from 'react-router-dom';
 import Api from 'services/services';
 import style from '../../style.module.css';
+import image_404 from './image.png';
 
 function MovieDetails() {
   const [moviesDetails, setMoviesDetails] = useState([]);
@@ -9,13 +10,29 @@ function MovieDetails() {
   // console.log(movieId);
 
   useEffect(() => {
-    Api.getMovieDetails(movieId).then(data => setMoviesDetails([data]));
+    Api.getMovieDetails(movieId)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status);
+        }
+        return response.json();
+      })
+      .then(data => setMoviesDetails([data]))
+      .catch(error => {
+        console.log(error);
+      });
   }, [movieId]);
   console.log(moviesDetails);
 
   return (
     <div>
       <ul className={style.moviesDetails}>
+        {moviesDetails.length < 1 && (
+          <div className={style.errorWrapper}>
+            <h2 className={style.errorTitle}>Sorry page not found</h2>
+            <img className={style.image_404} src={image_404} alt="404" />
+          </div>
+        )}
         {moviesDetails.map(item => (
           <li className={style.detailsItem} key={item.id}>
             <img

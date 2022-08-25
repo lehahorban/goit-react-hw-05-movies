@@ -17,9 +17,7 @@ function searchMovies(movies) {
 function getMovieDetails(id) {
   return fetch(
     `https://api.themoviedb.org/3/movie/${id}?api_key=${Key}&language=en-US`
-  )
-    .then(response => response.json())
-    .then(data => data);
+  );
 }
 
 function getMovieCredits(id) {

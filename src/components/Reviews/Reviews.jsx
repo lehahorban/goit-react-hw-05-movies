@@ -14,7 +14,9 @@ function Reviews() {
   return (
     <ul>
       {moviesReviews.length < 1 ? (
-        <p className={style.title}>Not found</p>
+        <p className={style.title}>
+          We don`t have any reviews for this movies.
+        </p>
       ) : (
         moviesReviews.map(item => (
           <li className={style.moviesReviewsItem} key={item.id}>

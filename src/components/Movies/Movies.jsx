@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useSearchParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Api from 'services/services';
 
@@ -8,8 +8,11 @@ function Movies() {
   const [inputValue, setInputValue] = useState('');
   const [movies, setMovies] = useState('');
   const [moviesArray, setMoviesArray] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
   const onChange = e => {
-    setInputValue(e.target.value);
+    const value = e.target.value;
+    setInputValue(value);
+    setSearchParams(value !== '' ? { query: value } : {});
   };
   const onSubmit = e => {
     e.preventDefault();
