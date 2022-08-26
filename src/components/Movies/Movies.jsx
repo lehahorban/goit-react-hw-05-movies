@@ -6,30 +6,32 @@ import style from '../../style.module.css';
 
 function Movies() {
   const [inputValue, setInputValue] = useState('');
-  const [movies, setMovies] = useState('');
   const [moviesArray, setMoviesArray] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const onChange = e => {
     const value = e.target.value;
     setInputValue(value);
-    setSearchParams(value !== '' ? { query: value } : {});
   };
+
   const onSubmit = e => {
     e.preventDefault();
     if (inputValue.trim() === '') {
       return alert('Треба написати що шукаєте');
     }
-    setMovies(inputValue);
+    setSearchParams(inputValue !== '' ? { query: inputValue } : {});
     setInputValue('');
   };
+
+  const query = searchParams.get('query');
+  console.log(query);
   useEffect(() => {
-    if (movies === '') {
+    if (query === null) {
       return;
     }
-    Api.searchMovies(movies).then(moviesResults =>
+    Api.searchMovies(query).then(moviesResults =>
       setMoviesArray(moviesResults)
     );
-  }, [movies, moviesArray]);
+  }, [query, moviesArray]);
 
   return (
     <div>

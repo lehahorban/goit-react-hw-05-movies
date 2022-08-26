@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet, useNavigate } from 'react-router-dom';
 import Api from 'services/services';
 import style from '../../style.module.css';
 import image_404 from './image.png';
@@ -24,8 +24,15 @@ function MovieDetails() {
   }, [movieId]);
   console.log(moviesDetails);
 
+  const navigate = useNavigate();
+
+  const goBack = () => navigate(-1);
+
   return (
-    <div>
+    <div className={style.movieWrapp}>
+      <button onClick={goBack} className={style.btnGoBack} type="button">
+        Go Back
+      </button>
       <ul className={style.moviesDetails}>
         {moviesDetails.length < 1 && (
           <div className={style.errorWrapper}>

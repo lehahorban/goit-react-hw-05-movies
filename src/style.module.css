@@ -241,3 +241,24 @@ span {
   margin-top: 15px;
   margin-left: 15px;
 }
+.btnGoBack {
+  margin-left: 15px;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: none;
+  width: 90px;
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24 / 16;
+  background-color: #8890ce;
+}
+
+.btnGoBack:hover {
+  background-color: #7430ac;
+}
+
+.movieWrapp {
+  background-color: #e2e3ee;
+}
