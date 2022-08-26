@@ -1,5 +1,5 @@
 import style from '../../style.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Api from 'services/services';
 import MovieDetails from 'components/MovieDetails/MovieDetails';
@@ -16,13 +16,18 @@ function Home() {
     return <MovieDetails />;
   };
 
+  const location = useLocation();
   return (
     <div className={style.home}>
       <h1 className={style.title}>Trending today</h1>
       <ul className={style.movieList}>
         {movies.map(item => (
           <li className={style.movieItem} onClick={hendleMovie} key={item.id}>
-            <NavLink className={style.movieLink} to={`/movies/${item.id}`}>
+            <NavLink
+              state={{ from: location }}
+              className={style.movieLink}
+              to={`/movies/${item.id}`}
+            >
               <img
                 className={style.movieImage}
                 src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}

@@ -9,7 +9,6 @@ function Navigate() {
       <NavLink className={style.navLink} to="/movies">
         Movies
       </NavLink>
-      <NavLink className={style.navLink} to="/movies/:movieId"></NavLink>
     </nav>
   );
 }

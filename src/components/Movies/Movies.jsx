@@ -1,7 +1,7 @@
-import { NavLink, useSearchParams } from 'react-router-dom';
+import { NavLink, useSearchParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Api from 'services/services';
-
+import image_404 from './image.png';
 import style from '../../style.module.css';
 
 function Movies() {
@@ -23,7 +23,7 @@ function Movies() {
   };
 
   const query = searchParams.get('query');
-  console.log(query);
+
   useEffect(() => {
     if (query === null) {
       return;
@@ -32,6 +32,8 @@ function Movies() {
       setMoviesArray(moviesResults)
     );
   }, [query, moviesArray]);
+
+  const location = useLocation();
 
   return (
     <div>
@@ -49,11 +51,18 @@ function Movies() {
       <ul className={style.movieList}>
         {moviesArray.map(item => (
           <li className={style.movieItem} key={item.id}>
-            <NavLink className={style.movieLink} to={`/movies/${item.id}`}>
-              {' '}
+            <NavLink
+              state={{ from: location }}
+              className={style.movieLink}
+              to={`/movies/${item.id}`}
+            >
               <img
                 className={style.movieImage}
-                src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                src={
+                  item.poster_path
+                    ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+                    : image_404
+                }
                 alt={item.title}
               />
               {item.name || item.title}

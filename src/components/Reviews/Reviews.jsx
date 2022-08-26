@@ -10,7 +10,7 @@ function Reviews() {
   useEffect(() => {
     Api.getMovieReviews(movieId).then(data => setMoviesReviews(data));
   }, [movieId]);
-  console.log(moviesReviews);
+
   return (
     <ul>
       {moviesReviews.length < 1 ? (

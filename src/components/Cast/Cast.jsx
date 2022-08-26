@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Api from 'services/services';
 import style from '../../style.module.css';
-// import image_404 from './image_404.jpg';
 
 function Cast() {
   const [moviesCredits, setMoviesCredits] = useState([]);
@@ -11,7 +10,7 @@ function Cast() {
   useEffect(() => {
     Api.getMovieCredits(movieId).then(data => setMoviesCredits(data));
   }, [movieId]);
-  console.log(moviesCredits);
+
   return (
     <div>
       <ul className={style.moviesDetailList}>

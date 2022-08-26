@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, Link, Outlet, useNavigate } from 'react-router-dom';
+import {
+  useParams,
+  Link,
+  Outlet,
+  useNavigate,
+  useLocation,
+} from 'react-router-dom';
 import Api from 'services/services';
 import style from '../../style.module.css';
 import image_404 from './image.png';
@@ -7,7 +13,6 @@ import image_404 from './image.png';
 function MovieDetails() {
   const [moviesDetails, setMoviesDetails] = useState([]);
   const { movieId } = useParams();
-  // console.log(movieId);
 
   useEffect(() => {
     Api.getMovieDetails(movieId)
@@ -22,11 +27,12 @@ function MovieDetails() {
         console.log(error);
       });
   }, [movieId]);
-  console.log(moviesDetails);
+
+  const location = useLocation();
+  const from = location.state?.from ?? '/';
 
   const navigate = useNavigate();
-
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(from);
 
   return (
     <div className={style.movieWrapp}>
@@ -57,16 +63,18 @@ function MovieDetails() {
               </p>
               <p className={style.movieDetailsText}>
                 <span>Genres:</span>{' '}
-                {item.genres.map(item => item.name).join(', ')}
+                {item.genres.map(item => item.name).join(' | ')}
               </p>
               <div className={style.movieDetailsWrapper}>
                 <Link
+                  state={{ from }}
                   className={style.movieDetailsText}
                   to={`/movies/${item.id}/cast`}
                 >
                   <span>Cast</span>
                 </Link>
                 <Link
+                  state={{ from }}
                   className={style.movieDetailsText}
                   to={`/movies/${item.id}/reviews`}
                 >
