@@ -2,7 +2,7 @@ import style from '../../style.module.css';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Api from 'services/services';
-import MovieDetails from 'components/MovieDetails/MovieDetails';
+
 function Home() {
   const [movies, setMovies] = useState([]);
 
@@ -12,17 +12,13 @@ function Home() {
     } catch (error) {}
   }, []);
 
-  const hendleMovie = () => {
-    return <MovieDetails />;
-  };
-
   const location = useLocation();
   return (
     <div className={style.home}>
       <h1 className={style.title}>Trending today</h1>
       <ul className={style.movieList}>
         {movies.map(item => (
-          <li className={style.movieItem} onClick={hendleMovie} key={item.id}>
+          <li className={style.movieItem} key={item.id}>
             <NavLink
               state={{ from: location }}
               className={style.movieLink}
