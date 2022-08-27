@@ -56,7 +56,7 @@ function MovieDetails() {
             <div className={style.itemWrapper}>
               <p className={style.movieDetailsTextTitle}>{item.title}</p>
               <p className={style.movieDetailsText}>
-                <span>User Score:</span> {item.vote_average}
+                <span>User Score:</span> {item.vote_average.toFixed(1)}
               </p>
               <p className={style.movieDetailsText}>
                 <span>Overview:</span> {item.overview}
